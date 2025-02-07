@@ -1,0 +1,112 @@
+[
+    {
+        "Brand": "Nike",
+        "Type": "Shirt",
+        "Sport": "Basketball",
+        "Size": "M",
+        "Color": "Black",
+        "Price": "$39.99",
+        "Store Location (Aisle)": "A3",
+        "Store Room Rack Number": "RR12",
+        "Quantity": "10"
+    },
+    {
+        "Brand": "Adidas",
+        "Type": "Shirt",
+        "Sport": "Soccer",
+        "Size": "L",
+        "Color": "Red",
+        "Price": "$29.95",
+        "Store Location (Aisle)": "B2",
+        "Store Room Rack Number": "RR08",
+        "Quantity": "5"
+    },
+    {
+        "Brand": "Under Armour",
+        "Type": "Shirt",
+        "Sport": "Running",
+        "Size": "S",
+        "Color": "Blue",
+        "Price": "$44.50",
+        "Store Location (Aisle)": "C1",
+        "Store Room Rack Number": "RR05",
+        "Quantity": "8"
+    },
+    {
+        "Brand": "Champion",
+        "Type": "Shorts",
+        "Sport": "Training",
+        "Size": "M",
+        "Color": "Grey",
+        "Price": "$24.99",
+        "Store Location (Aisle)": "A3",
+        "Store Room Rack Number": "RR14",
+        "Quantity": "15"
+    },
+    {
+        "Brand": "Puma",
+        "Type": "Shorts",
+        "Sport": "Tennis",
+        "Size": "S",
+        "Color": "White",
+        "Price": "$32.50",
+        "Store Location (Aisle)": "B2",
+        "Store Room Rack Number": "RR10",
+        "Quantity": "3"
+    },
+    {
+        "Brand": "The North Face",
+        "Type": "Shorts",
+        "Sport": "Hiking",
+        "Size": "L",
+        "Color": "Khaki",
+        "Price": "$49.99",
+        "Store Location (Aisle)": "C1",
+        "Store Room Rack Number": "RR03",
+        "Quantity": "7"
+    },
+    {
+        "Brand": "Reebok",
+        "Type": "Shirt",
+        "Sport": "CrossFit",
+        "Size": "XL",
+        "Color": "Green",
+        "Price": "$35.95",
+        "Store Location (Aisle)": "A3",
+        "Store Room Rack Number": "RR16",
+        "Quantity": "2"
+    },
+    {
+        "Brand": "New Balance",
+        "Type": "Shorts",
+        "Sport": "Baseball",
+        "Size": "XS",
+        "Color": "Navy",
+        "Price": "$27.99",
+        "Store Location (Aisle)": "B2",
+        "Store Room Rack Number": "RR11",
+        "Quantity": "4"
+    },
+    {
+        "Brand": "Asics",
+        "Type": "Shirt",
+        "Sport": "Volleyball",
+        "Size": "XXL",
+        "Color": "Yellow",
+        "Price": "$42.50",
+        "Store Location (Aisle)": "C1",
+        "Store Room Rack Number": "RR02",
+        "Quantity": "9"
+    },
+    {
+        "Brand": "Columbia",
+        "Type": "Shorts",
+        "Sport": "Fishing",
+        "Size": "M",
+        "Color": "Olive",
+        "Price": "$38.99",
+        "Store Location (Aisle)": "A3",
+        "Store Room Rack Number": "RR18",
+        "Quantity": "6"
+    }
+]

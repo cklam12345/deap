@@ -1,0 +1,1 @@
+docker run -d -p 3000:8080 -e WEBUI_NAME="Hp Cool" --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always chinkeonglam12345/hpcool-local:version_1.0

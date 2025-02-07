@@ -1,0 +1,176 @@
+{
+  "name": "speech2asanna",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "85a622fe-01ab-4587-9586-287fbe3e48c1",
+        "options": {}
+      },
+      "id": "6f0414d4-8916-4608-9b95-1866518a8579",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        280,
+        280
+      ],
+      "webhookId": "85a622fe-01ab-4587-9586-287fbe3e48c1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9e792880-a7e5-49ae-aff4-ffa5a094599f",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        280,
+        60
+      ],
+      "webhookId": "8228542e-b3a8-4cf7-ad94-e12af4714322"
+    },
+    {
+      "parameters": {},
+      "id": "3b83ebf1-3247-4a37-bb1e-223a18c1aca4",
+      "name": "Postgres Chat Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        400
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "fJ5jNyFNEUVkM1Hz",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "llama3-groq-tool-use:latest",
+        "options": {}
+      },
+      "id": "05308fc0-1aa9-4af8-a110-872812a31339",
+      "name": "Ollama Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        540,
+        400
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "exv37O2lV7xgkl4g",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workspace": "4113203819336",
+        "name": "deliver wave ",
+        "otherProperties": {}
+      },
+      "id": "2bd8ccc8-21ee-4805-bd42-e94628045e85",
+      "name": "Asana2",
+      "type": "n8n-nodes-base.asana",
+      "typeVersion": 1,
+      "position": [
+        960,
+        180
+      ],
+      "credentials": {
+        "asanaApi": {
+          "id": "EPIITpWWdqdc6pok",
+          "name": "Asana account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Summarize audio content into a structured JSON format, including data, workspace, name, assignee, due_on. The data is the header for the nested JSON, it must be there for every task created, the name is the name of the task that got picked up from the audio clip, the due_on is the due date set for the task to be completed. The assignee is the name of the person the task is assigned to. Follow the example provided for formatting, using English for all keys and including all instructed elements.\n{\n  \"data\": {\n    \"workspace\": \"WORKSPACE_GID\",\n    \"name\": \"Sample task\",\n    \"assignee\": \"me\"\n  }\n}",
+        "options": {}
+      },
+      "id": "f08d3287-e923-4c8d-afad-ef1336dfe5ba",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        560,
+        180
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Asana2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ea1304f0-388c-4311-a865-597b98eedfb4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7bbdf5966bce3aeb0a8c0c6217c1c1de2ab368c61a7c1cdc170cd735e6660aa9"
+  },
+  "id": "SPoJDOVNxtxeLIsl",
+  "tags": []
+}

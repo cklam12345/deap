@@ -1,0 +1,31 @@
+**Introduction**
+
+This document provides a comparative analysis of AI PCs from HP and Dell. We will examine key specifications, performance, features, and customer feedback to help you make an informed decision.
+
+**Product Comparison**
+
+| Feature | HP Omen 17-cb1000 | Dell XPS 17 9700 |
+|---|---|---|
+| Processor | Intel Core i9-11900K | Intel Core i7-10875H |
+| GPU | NVIDIA GeForce RTX 3080 | NVIDIA GeForce RTX 3080 |
+| RAM | 32GB DDR4 | 32GB DDR4 |
+| Storage | 1TB SSD | 1TB SSD |
+
+**Performance**
+
+Both laptops offer excellent performance for AI tasks. However, the HP Omen 17-cb1000 has a slight advantage due to its higher-end processor. 
+
+**Features**
+
+* **HP Omen 17-cb1000:** Advanced cooling system, customizable RGB lighting, built-in audio enhancements.
+* **Dell XPS 17 9700:** Sleek and minimalist design, excellent display quality, Thunderbolt 4 connectivity.
+
+**Customer Feedback**
+
+* **HP Omen 17-cb1000:** Customers praise its powerful performance and customizable features. Some users have mentioned issues with heat management under heavy workloads.
+* **Dell XPS 17 9700:** Customers appreciate its premium build quality and excellent display. A few users have noted that the keyboard layout might take some getting used to.
+
+**Conclusion**
+
+Both the HP Omen 17-cb1000 and Dell XPS 17 9700 are excellent choices for AI enthusiasts. The HP Omen offers superior raw performance, while the Dell XPS provides a more refined and premium experience. The best option for you will depend on your specific needs and preferences.
+

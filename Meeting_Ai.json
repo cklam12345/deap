@@ -1,0 +1,234 @@
+{
+  "name": "Meeting Ai",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "288fb79a-9fb3-4955-9ffc-22b7c8e7b206",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        360,
+        360
+      ],
+      "webhookId": "d1df49ea-93d0-4782-be06-fdc579dae62a"
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "options": {}
+      },
+      "id": "22a8dfc1-c86c-4e02-882d-1db347f7abbc",
+      "name": "Ollama Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        900,
+        580
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "2V1sOZbOMkoQPhiy",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "75ebfdef-c8e2-4c3e-b716-1479d0cc2a73",
+              "name": "chatInput",
+              "value": "={{ $json?.chatInput || $json.body.chatInput }}",
+              "type": "string"
+            },
+            {
+              "id": "59b7a20f-0626-4861-93e2-015d430c266e",
+              "name": "sessionId",
+              "value": "={{ $json?.sessionId || $json.body.sessionId}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "60823e6f-37c1-4ae8-9b5e-49a792217de4",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        620,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "088e0408-9b82-40f1-9d4c-7ebd144981cf",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1500,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "n8n",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "33a5735a-65b4-4660-be9e-f7077342c5ea",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        380,
+        560
+      ],
+      "webhookId": "3e19a300-900d-458d-ab9b-71f06269120f"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "your name Is Amy, you are a ai meeting assistant, you will not reply to chat input , just listen to query and record the incoming query and provide summary after collecting 5 minutes of conversation. if you hear from the conversation context contain in the user query that the meeting have started, send a trigger to the tool named startMeeting to kick off the meeting recording function. if you hear from the conversation context contain in the user query that the meeting have end, send a trigger to the tool named endMeeting to end the meeting recording function. "
+        }
+      },
+      "id": "d779a7e3-1541-492e-8a95-393d76da7862",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        900,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "name": "startMeeting",
+        "description": "call this tool to start meeting recording.",
+        "jsCode": "// Example: convert the incoming query to uppercase and return it\nreturn query"
+      },
+      "id": "c8e27fe6-ae82-4a1d-bb1e-d5441de6a4dc",
+      "name": "startMeeting",
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "name": "endMeeting",
+        "description": "call this tool to end meeting recording.",
+        "jsCode": "// Example: convert the incoming query to uppercase and return it\nreturn query"
+      },
+      "id": "ba6adb88-7cc0-4e9c-af32-f3a8e65f049f",
+      "name": "endMeeting",
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.1,
+      "position": [
+        1160,
+        580
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "startMeeting": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "endMeeting": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "aa8ab459-4c0e-4a41-92d5-429e1308ea01",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49c35a1d5cfb7854184603d0abddbbad50af0381d2c905cfb222ac293c3fda42"
+  },
+  "id": "rPPkZepGrDH8otem",
+  "tags": []
+}
